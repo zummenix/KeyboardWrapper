@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="KeyboardWrapper_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,48 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyV-Zf-6X1">
+                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type something" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2b7-66-aNX">
+                                        <rect key="frame" x="10" y="17" width="580" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2b7-66-aNX" firstAttribute="leading" secondItem="dyV-Zf-6X1" secondAttribute="leading" constant="10" id="EdD-Uc-1pe"/>
+                                    <constraint firstItem="2b7-66-aNX" firstAttribute="centerY" secondItem="dyV-Zf-6X1" secondAttribute="centerY" id="H9L-4X-0KM"/>
+                                    <constraint firstAttribute="height" constant="64" id="K0l-0H-TD7"/>
+                                    <constraint firstAttribute="trailing" secondItem="2b7-66-aNX" secondAttribute="trailing" constant="10" id="zjn-m2-4Pp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dyV-Zf-6X1" secondAttribute="trailing" id="Jg3-85-BIT"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dyV-Zf-6X1" secondAttribute="bottom" id="n3L-pj-DZ0"/>
+                            <constraint firstItem="dyV-Zf-6X1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="yDU-CC-ZJd"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Fu2-vo-5ui" appends="YES" id="SHg-ke-dSj"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="n3L-pj-DZ0" id="6la-vT-wsG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Fu2-vo-5ui">
+                    <connections>
+                        <action selector="tapGestureRecognizerAction:" destination="vXZ-lx-hvc" id="NUW-eI-iqZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="422" y="392"/>
         </scene>
     </scenes>
 </document>
