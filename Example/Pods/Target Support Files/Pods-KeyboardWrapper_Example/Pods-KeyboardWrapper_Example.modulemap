@@ -1,0 +1,6 @@
+framework module Pods_KeyboardWrapper_Example {
+  umbrella header "Pods-KeyboardWrapper_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

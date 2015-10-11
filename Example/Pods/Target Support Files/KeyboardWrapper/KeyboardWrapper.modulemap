@@ -1,0 +1,6 @@
+framework module KeyboardWrapper {
+  umbrella header "KeyboardWrapper-umbrella.h"
+
+  export *
+  module * { export * }
+}

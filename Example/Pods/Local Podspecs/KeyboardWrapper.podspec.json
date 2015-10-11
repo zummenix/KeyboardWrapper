@@ -1,0 +1,25 @@
+{
+  "name": "KeyboardWrapper",
+  "version": "0.1.0",
+  "summary": "A short description of KeyboardWrapper.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/KeyboardWrapper",
+  "license": "MIT",
+  "authors": {
+    "Aleksey Kuznetsov": "zummenix@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/KeyboardWrapper.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "KeyboardWrapper": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}
