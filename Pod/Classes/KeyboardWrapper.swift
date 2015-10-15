@@ -57,7 +57,7 @@ public class KeyboardWrapper {
 /// Represents keyboard state.
 public enum KeyboardState {
 
-    /// Denotes hidden state of keyboard
+    /// Denotes hidden state of keyboard.
     case Hidden
 
     /// Denotes state when keyboard about to show.
@@ -66,7 +66,7 @@ public enum KeyboardState {
     /// Denotes visible state of keyboard.
     case Visible
 
-    ///Denotes state when keyboard about to hide.
+    /// Denotes state when keyboard about to hide.
     case WillHide
 }
 
