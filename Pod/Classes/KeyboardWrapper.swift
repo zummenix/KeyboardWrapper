@@ -12,10 +12,6 @@ public class KeyboardWrapper {
     /// The delegate for keyboard notifications.
     public weak var delegate: KeyboardWrapperDelegate?
 
-    /// Current state of keyboard.
-    /// We assume that initial state of keyboard is `Hidden`.
-    private(set) public var state = KeyboardState.Hidden
-
     public init() {
         let center = NSNotificationCenter.defaultCenter()
         center.addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
@@ -34,23 +30,23 @@ public class KeyboardWrapper {
     }
 
     private dynamic func keyboardWillShowNotification(notification: NSNotification) {
-        state = .WillShow
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: KeyboardInfo.fromNotificationUserInfo(notification.userInfo))
+        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .WillShow)
+        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
     }
 
     private dynamic func keyboardDidShowNotification(notification: NSNotification) {
-        state = .Visible
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: KeyboardInfo.fromNotificationUserInfo(notification.userInfo))
+        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .Visible)
+        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
     }
 
     private dynamic func keyboardWillHideNotification(notification: NSNotification) {
-        state = .WillHide
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: KeyboardInfo.fromNotificationUserInfo(notification.userInfo))
+        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .WillHide)
+        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
     }
 
     private dynamic func keyboardDidHideNotification(notification: NSNotification) {
-        state = .Hidden
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: KeyboardInfo.fromNotificationUserInfo(notification.userInfo))
+        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .Hidden)
+        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
     }
 }
 
@@ -72,6 +68,9 @@ public enum KeyboardState {
 
 /// Represents info about keyboard extracted from `NSNotification`.
 public struct KeyboardInfo {
+
+    /// The state of keyboard.
+    public let state: KeyboardState
 
     /// The start frame of the keyboard in screen coordinates.
     public let beginFrame: CGRect
@@ -95,9 +94,9 @@ public struct KeyboardInfo {
         }
     }
 
-    /// Creates instance of `KeyboardInfo` using `userInfo` from `NSNotification` object.
+    /// Creates instance of `KeyboardInfo` using `userInfo` from `NSNotification` object and keyboard state.
     /// If there is no info or `info` doesn't contain appropriate key-value pair uses default values.
-    public static func fromNotificationUserInfo(info: [NSObject : AnyObject]?) -> KeyboardInfo {
+    public static func fromNotificationUserInfo(info: [NSObject : AnyObject]?, state: KeyboardState) -> KeyboardInfo {
         var beginFrame = CGRectZero
         info?[UIKeyboardFrameBeginUserInfoKey]?.getValue(&beginFrame)
 
@@ -106,6 +105,6 @@ public struct KeyboardInfo {
 
         let curve = UIViewAnimationCurve(rawValue: info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0) ?? .EaseInOut
         let duration = NSTimeInterval(info?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.0)
-        return KeyboardInfo(beginFrame: beginFrame, endFrame: endFrame, animationCurve: curve, animationDuration: duration)
+        return KeyboardInfo(state: state, beginFrame: beginFrame, endFrame: endFrame, animationCurve: curve, animationDuration: duration)
     }
 }
