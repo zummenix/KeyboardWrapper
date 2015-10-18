@@ -5,7 +5,7 @@ import UIKit
 public protocol KeyboardWrapperDelegate: class {
 
     /// Called when `KeyboardWrapper` will receive `UIKeyboard[WillShow|DidShow|WillHide|DidHide]Notification`.
-    func keyboardWrapper(wrapper: KeyboardWrapper, didChangeWithKeyboardInfo info: KeyboardInfo)
+    func keyboardWrapper(wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo)
 }
 
 /// Responsible for observing `UIKeyboard` notifications and calling `delegate` to notify about changes.
@@ -36,22 +36,22 @@ public class KeyboardWrapper {
 
     private dynamic func keyboardWillShowNotification(notification: NSNotification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .WillShow)
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     private dynamic func keyboardDidShowNotification(notification: NSNotification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .Visible)
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     private dynamic func keyboardWillHideNotification(notification: NSNotification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .WillHide)
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     private dynamic func keyboardDidHideNotification(notification: NSNotification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .Hidden)
-        delegate?.keyboardWrapper(self, didChangeWithKeyboardInfo: info)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 }
 
