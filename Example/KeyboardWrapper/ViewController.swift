@@ -27,7 +27,13 @@ class ViewController: UIViewController {
 
 extension ViewController: KeyboardWrapperDelegate {
     func keyboardWrapper(wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo) {
-        bottomConstraint.constant = (info.state == .WillShow || info.state == .Visible) ? info.endFrame.size.height : 0.0
+
+        if info.state == .WillShow || info.state == .Visible {
+            bottomConstraint.constant = info.endFrame.size.height
+        } else {
+            bottomConstraint.constant = 0.0
+        }
+
         UIView.animateWithDuration(info.animationDuration, delay: 0.0, options: info.animationOptions, animations: { () -> Void in
             self.view.layoutIfNeeded()
         }, completion: nil)
