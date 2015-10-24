@@ -116,7 +116,7 @@ public struct KeyboardInfo {
         var endFrame = CGRectZero
         info?[UIKeyboardFrameEndUserInfoKey]?.getValue(&endFrame)
 
-        let curve = UIViewAnimationCurve(rawValue: info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0) ?? .EaseInOut
+        let curve = info?[UIKeyboardAnimationCurveUserInfoKey] as? UIViewAnimationCurve ?? .EaseInOut
         let duration = NSTimeInterval(info?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.0)
         return KeyboardInfo(state: state, beginFrame: beginFrame, endFrame: endFrame, animationCurve: curve, animationDuration: duration)
     }
