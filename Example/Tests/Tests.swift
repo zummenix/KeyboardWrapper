@@ -12,6 +12,11 @@ class Tests: XCTestCase {
         keyboardWrapper = KeyboardWrapper(delegate: keyboardWrapperDelegate)
     }
 
+    override func tearDown() {
+        super.tearDown()
+        keyboardWrapper = nil
+    }
+
     func testKeyboardStates() {
         let notificationNames = [
             UIKeyboardWillShowNotification,
