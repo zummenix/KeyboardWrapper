@@ -1,4 +1,8 @@
 # KeyboardWrapper
+[![Build Status](https://travis-ci.org/zummenix/KeyboardWrapper.svg?branch=master)]
+(https://travis-ci.org/zummenix/KeyboardWrapper)
+[![Cocoapod](https://img.shields.io/cocoapods/v/KeyboardWrapper.svg)](https://cocoapods.org/pods/KeyboardWrapper)
+
 A safe wrapper for UIKeyboard notifications written in Swift.
 
 <img src="https://raw.github.com/zummenix/KeyboardWrapper/master/demo.gif" alt="Demo" width="372" height="662"/>
