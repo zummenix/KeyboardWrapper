@@ -2,7 +2,7 @@ import UIKit
 import XCTest
 import KeyboardWrapper
 
-class Tests: XCTestCase {
+class KeyboardWrapperTests: XCTestCase {
 
     let keyboardWrapperDelegate = Delegate()
     var keyboardWrapper: KeyboardWrapper?
