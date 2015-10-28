@@ -37,6 +37,11 @@ extension ViewController: KeyboardWrapperDelegate {
 }
 ```
 
+## Requirements
+
+- **iOS 8.0** and higher
+- **Xcode 7.0** and higher
+
 ## Installation
 
 ### CocoaPods
