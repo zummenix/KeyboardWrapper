@@ -39,12 +39,18 @@ extension ViewController: KeyboardWrapperDelegate {
 
 ## Installation
 
+### CocoaPods
+
 KeyboardWrapper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'KeyboardWrapper', '~> 1.0.0'
 ```
+
+### Manual
+
+Just drop the `KeyboardWrapper.swift` file into your project. That's it!
 
 ## License
 
