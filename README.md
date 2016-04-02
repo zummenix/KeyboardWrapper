@@ -44,6 +44,10 @@ extension ViewController: KeyboardWrapperDelegate {
 
 For older versions of xcode and swift please use `1.0.2` version of the lib.
 
+## Changes
+
+Take a look at [change log](CHANGELOG.md).
+
 ## Installation
 
 ### CocoaPods
