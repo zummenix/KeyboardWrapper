@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2016-04-02
+- Use `#selector` to fix warnings.
+- Fix xcode project warnings.
+
 ## [1.0.2] - 2015-10-26
 - Started to keep change log.
 - Enabled xcode test coverage.
