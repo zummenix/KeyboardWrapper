@@ -17,10 +17,10 @@ public class KeyboardWrapper {
     /// Creates a new instance of `KeyboardWrapper` and adds itself as observer for `UIKeyboard` notifications.
     public init() {
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        center.addObserver(self, selector: "keyboardDidShowNotification:", name: UIKeyboardDidShowNotification, object: nil)
-        center.addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
-        center.addObserver(self, selector: "keyboardDidHideNotification:", name: UIKeyboardDidHideNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyboardWillShowNotification), name: UIKeyboardWillShowNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyboardDidShowNotification), name: UIKeyboardDidShowNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyboardWillHideNotification), name: UIKeyboardWillHideNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyboardDidHideNotification), name: UIKeyboardDidHideNotification, object: nil)
     }
 
     /// Creates a new instance of `KeyboardWrapper`, adds itself as observer for `UIKeyboard` notifications and

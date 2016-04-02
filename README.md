@@ -40,7 +40,13 @@ extension ViewController: KeyboardWrapperDelegate {
 ## Requirements
 
 - **iOS 8.0** and higher
-- **Xcode 7.0** and higher
+- **Xcode 7.3 (swift 2.2)** and higher
+
+For older versions of xcode and swift please use `1.0.2` version of the lib.
+
+## Changes
+
+Take a look at [change log](CHANGELOG.md).
 
 ## Installation
 
@@ -50,7 +56,7 @@ KeyboardWrapper is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KeyboardWrapper', '~> 1.0.0'
+pod 'KeyboardWrapper', '~> 2.0.0'
 ```
 
 ### Manual
