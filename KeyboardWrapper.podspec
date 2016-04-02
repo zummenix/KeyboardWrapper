@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "KeyboardWrapper"
-  s.version          = "1.0.2"
+  s.version          = "2.0.0"
   s.summary          = "A wrapper for UIKeyboard notifications."
 
   s.description      = <<-DESC
