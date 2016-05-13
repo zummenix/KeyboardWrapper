@@ -1,5 +1,5 @@
 PODS:
-  - KeyboardWrapper (0.1.0)
+  - KeyboardWrapper (2.0.0)
 
 DEPENDENCIES:
   - KeyboardWrapper (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KeyboardWrapper: d372091ccd21758f75b0ab8372988f3d65fbbfed
+  KeyboardWrapper: d3619622389fbab9263e565fea2f529d36c83acd
 
 COCOAPODS: 0.39.0
