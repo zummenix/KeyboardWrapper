@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [3.0.0] - 2016-09-15
+## [3.0.1] - 2016-09-15
 - Upgrade to swift 3.
 
 ## [2.0.0] - 2016-04-02

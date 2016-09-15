@@ -56,7 +56,7 @@ KeyboardWrapper is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KeyboardWrapper', '~> 3.0.0'
+pod 'KeyboardWrapper', '~> 3.0.1'
 ```
 
 ### Manual
