@@ -19,17 +19,17 @@ class KeyboardWrapperTests: XCTestCase {
 
     func testKeyboardStates() {
         let notificationNames = [
-            UIKeyboardWillShowNotification,
-            UIKeyboardDidShowNotification,
-            UIKeyboardWillHideNotification,
-            UIKeyboardDidHideNotification
+            NSNotification.Name.UIKeyboardWillShow,
+            NSNotification.Name.UIKeyboardDidShow,
+            NSNotification.Name.UIKeyboardWillHide,
+            NSNotification.Name.UIKeyboardDidHide
         ]
 
         for name in notificationNames {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)
+            NotificationCenter.default.post(name: name, object: nil)
         }
 
-        XCTAssertEqual(keyboardWrapperDelegate.states, [.WillShow, .Visible, .WillHide, .Hidden])
+        XCTAssertEqual(keyboardWrapperDelegate.states, [.willShow, .visible, .willHide, .hidden])
     }
     
 }
@@ -38,7 +38,7 @@ class Delegate: KeyboardWrapperDelegate {
 
     var states = [KeyboardState]()
 
-    func keyboardWrapper(wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo) {
+    func keyboardWrapper(_ wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo) {
         states.append(info.state)
     }
 }
