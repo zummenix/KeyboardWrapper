@@ -11,30 +11,30 @@ import KeyboardWrapper
 
 class ViewController: UIViewController {
 
-    @IBOutlet private var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var bottomConstraint: NSLayoutConstraint!
 
-    private var keyboardWrapper: KeyboardWrapper?
+    fileprivate var keyboardWrapper: KeyboardWrapper?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardWrapper = KeyboardWrapper(delegate: self)
     }
 
-    @IBAction func tapGestureRecognizerAction(sender: UIGestureRecognizer) {
+    @IBAction func tapGestureRecognizerAction(_ sender: UIGestureRecognizer) {
         view.endEditing(true)
     }
 }
 
 extension ViewController: KeyboardWrapperDelegate {
-    func keyboardWrapper(wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo) {
+    func keyboardWrapper(_ wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo) {
 
-        if info.state == .WillShow || info.state == .Visible {
+        if info.state == .willShow || info.state == .visible {
             bottomConstraint.constant = info.endFrame.size.height
         } else {
             bottomConstraint.constant = 0.0
         }
 
-        UIView.animateWithDuration(info.animationDuration, delay: 0.0, options: info.animationOptions, animations: { () -> Void in
+        UIView.animate(withDuration: info.animationDuration, delay: 0.0, options: info.animationOptions, animations: { () -> Void in
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

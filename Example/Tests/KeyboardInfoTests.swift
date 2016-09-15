@@ -13,26 +13,20 @@ class KeyboardInfoTests: XCTestCase {
     }
 
     func testAnimationCurve() {
-        let expectedCurves: [UIViewAnimationCurve] = [.EaseInOut, .EaseIn, .EaseOut, .Linear]
+        let expectedCurves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
 
         let curves = expectedCurves.map { c in
-            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .WillShow).animationCurve
+            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationCurve
         }
         XCTAssertEqual(curves, expectedCurves)
     }
 
     func testAnimationOptions() {
-        let curves: [UIViewAnimationCurve] = [.EaseInOut, .EaseIn, .EaseOut, .Linear]
+        let curves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
 
         let options = curves.map { c in
-            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .WillShow).animationOptions
+            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationOptions
         }
-        XCTAssertEqual(options, [.CurveEaseInOut, .CurveEaseIn, .CurveEaseOut, .CurveLinear])
-    }
-
-    func testAnimationCurveDefaultValue() {
-        // TODO: investigate this problem.
-        // let curve = KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: 9], state: .WillShow).animationCurve
-        // XCTAssertEqual(curve, UIViewAnimationCurve.EaseInOut)
+        XCTAssertEqual(options, [.curveEaseInOut, .curveEaseIn, .curveEaseOut, .curveLinear])
     }
 }
