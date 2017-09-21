@@ -34,22 +34,22 @@ open class KeyboardWrapper {
         NotificationCenter.default.removeObserver(self)
     }
 
-    fileprivate dynamic func keyboardWillShowNotification(_ notification: Notification) {
+    @objc fileprivate dynamic func keyboardWillShowNotification(_ notification: Notification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .willShow)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
-    fileprivate dynamic func keyboardDidShowNotification(_ notification: Notification) {
+    @objc fileprivate dynamic func keyboardDidShowNotification(_ notification: Notification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .visible)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
-    fileprivate dynamic func keyboardWillHideNotification(_ notification: Notification) {
+    @objc fileprivate dynamic func keyboardWillHideNotification(_ notification: Notification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .willHide)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
-    fileprivate dynamic func keyboardDidHideNotification(_ notification: Notification) {
+    @objc fileprivate dynamic func keyboardDidHideNotification(_ notification: Notification) {
         let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .hidden)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
