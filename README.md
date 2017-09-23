@@ -37,7 +37,7 @@ extension ViewController: KeyboardWrapperDelegate {
 ## Requirements
 
 - **iOS 8.0** or higher
-- **Xcode 9.0 (swift 3.0)** or higher
+- **Xcode 9.0 (swift 4.0)** or higher
 
 For older versions of xcode and swift please use `3.0.1` version of the lib.
 
