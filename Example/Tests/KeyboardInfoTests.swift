@@ -8,7 +8,7 @@ class KeyboardInfoTests: XCTestCase {
         let expectedCurves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
 
         let curves = expectedCurves.map { c in
-            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationCurve
+            KeyboardInfo(info: [UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationCurve
         }
         XCTAssertEqual(curves, expectedCurves)
     }
@@ -17,7 +17,7 @@ class KeyboardInfoTests: XCTestCase {
         let curves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
 
         let options = curves.map { c in
-            KeyboardInfo.fromNotificationUserInfo([UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationOptions
+            KeyboardInfo(info: [UIKeyboardAnimationCurveUserInfoKey: c.rawValue], state: .willShow).animationOptions
         }
         XCTAssertEqual(options, [.curveEaseInOut, .curveEaseIn, .curveEaseOut, .curveLinear])
     }

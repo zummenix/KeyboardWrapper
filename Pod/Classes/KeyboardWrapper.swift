@@ -35,22 +35,22 @@ open class KeyboardWrapper {
     }
 
     @objc private func keyboardWillShowNotification(_ notification: Notification) {
-        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .willShow)
+        let info = KeyboardInfo(info: notification.userInfo, state: .willShow)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     @objc private func keyboardDidShowNotification(_ notification: Notification) {
-        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .visible)
+        let info = KeyboardInfo(info: notification.userInfo, state: .visible)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     @objc private func keyboardWillHideNotification(_ notification: Notification) {
-        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .willHide)
+        let info = KeyboardInfo(info: notification.userInfo, state: .willHide)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
     @objc private func keyboardDidHideNotification(_ notification: Notification) {
-        let info = KeyboardInfo.fromNotificationUserInfo(notification.userInfo, state: .hidden)
+        let info = KeyboardInfo(info: notification.userInfo, state: .hidden)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 }
@@ -106,14 +106,16 @@ public struct KeyboardInfo {
         case .linear: return UIViewAnimationOptions.curveLinear
         }
     }
+}
 
+public extension KeyboardInfo {
     /// Creates instance of `KeyboardInfo` using `userInfo` from `NSNotification` object and a keyboard state.
     /// If there is no info or `info` doesn't contain appropriate key-value pair uses default values.
-    public static func fromNotificationUserInfo(_ info: [AnyHashable: Any]?, state: KeyboardState) -> KeyboardInfo {
-        let beginFrame = (info?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
-        let endFrame = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
-        let curve = UIViewAnimationCurve(rawValue: info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0) ?? .easeInOut
-        let duration = TimeInterval(info?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.0)
-        return KeyboardInfo(state: state, beginFrame: beginFrame, endFrame: endFrame, animationCurve: curve, animationDuration: duration)
+    init(info: [AnyHashable: Any]?, state: KeyboardState) {
+        self.state = state
+        self.beginFrame = (info?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        self.endFrame = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        self.animationCurve = UIViewAnimationCurve(rawValue: info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0) ?? .easeInOut
+        self.animationDuration = TimeInterval(info?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.0)
     }
 }
