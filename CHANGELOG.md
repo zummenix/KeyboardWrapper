@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.0.0] - 2017-09-23
+- Upgrade to swift 4.
+- Implement init for KeyboardInfo instead of static method.
+
 ## [3.0.1] - 2016-09-15
 - Upgrade to swift 3.
 

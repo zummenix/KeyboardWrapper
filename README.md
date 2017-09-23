@@ -29,9 +29,7 @@ extension ViewController: KeyboardWrapperDelegate {
             bottomConstraint.constant = 0.0
         }
 
-        UIView.animate(withDuration: info.animationDuration, delay: 0.0, options: info.animationOptions, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        view.layoutIfNeeded()
     }
 }
 ```
@@ -39,9 +37,9 @@ extension ViewController: KeyboardWrapperDelegate {
 ## Requirements
 
 - **iOS 8.0** or higher
-- **Xcode 8.0 (swift 3.0)** or higher
+- **Xcode 9.0 (swift 3.0)** or higher
 
-For older versions of xcode and swift please use `2.0.0` version of the lib.
+For older versions of xcode and swift please use `3.0.1` version of the lib.
 
 ## Changes
 
@@ -55,7 +53,7 @@ KeyboardWrapper is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KeyboardWrapper', '~> 3.0.1'
+pod 'KeyboardWrapper', '~> 4.0'
 ```
 
 ### Manual
