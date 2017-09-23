@@ -11,9 +11,9 @@ import KeyboardWrapper
 
 class ViewController: UIViewController {
 
-    @IBOutlet fileprivate var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var bottomConstraint: NSLayoutConstraint!
 
-    fileprivate var keyboardWrapper: KeyboardWrapper?
+    private var keyboardWrapper: KeyboardWrapper?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,7 @@ extension ViewController: KeyboardWrapperDelegate {
             bottomConstraint.constant = 0.0
         }
 
-        UIView.animate(withDuration: info.animationDuration, delay: 0.0, options: info.animationOptions, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        view.layoutIfNeeded()
     }
 }
 

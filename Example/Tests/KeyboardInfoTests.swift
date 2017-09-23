@@ -4,14 +4,6 @@ import KeyboardWrapper
 
 class KeyboardInfoTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testAnimationCurve() {
         let expectedCurves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
 
