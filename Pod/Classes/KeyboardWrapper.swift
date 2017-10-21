@@ -19,6 +19,8 @@ open class KeyboardWrapper {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         center.addObserver(self, selector: #selector(keyboardDidShowNotification), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        center.addObserver(self, selector: #selector(keyboardWillChangeFrameNotification), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        center.addObserver(self, selector: #selector(keyboardDidChangeFrameNotification), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
         center.addObserver(self, selector: #selector(keyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         center.addObserver(self, selector: #selector(keyboardDidHideNotification), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
@@ -41,6 +43,16 @@ open class KeyboardWrapper {
 
     @objc private func keyboardDidShowNotification(_ notification: Notification) {
         let info = KeyboardInfo(info: notification.userInfo, state: .visible)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
+    }
+
+    @objc private func keyboardWillChangeFrameNotification(_ notification: Notification) {
+        let info = KeyboardInfo(info: notification.userInfo, state: .willChangeFrame)
+        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
+    }
+
+    @objc private func keyboardDidChangeFrameNotification(_ notification: Notification) {
+        let info = KeyboardInfo(info: notification.userInfo, state: .didChangeFrame)
         delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
     }
 
@@ -73,6 +85,14 @@ public enum KeyboardState {
     /// Denotes state when the keyboard about to hide.
     /// Corresponds to `UIKeyboardWillHideNotification`.
     case willHide
+
+    /// Denotes state when the keyboard about to change its frame.
+    /// Corresponds to `UIKeyboardWillChangeFrameNotification`.
+    case willChangeFrame
+
+    /// Denotes state when the keyboard changed its frame.
+    /// Corresponds to `UIKeyboardDidChangeFrameNotification`.
+    case didChangeFrame
 }
 
 /// Represents info about keyboard extracted from `NSNotification`.

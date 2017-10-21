@@ -21,6 +21,8 @@ class KeyboardWrapperTests: XCTestCase {
         let notificationNames = [
             NSNotification.Name.UIKeyboardWillShow,
             NSNotification.Name.UIKeyboardDidShow,
+            NSNotification.Name.UIKeyboardWillChangeFrame,
+            NSNotification.Name.UIKeyboardDidChangeFrame,
             NSNotification.Name.UIKeyboardWillHide,
             NSNotification.Name.UIKeyboardDidHide
         ]
@@ -29,7 +31,7 @@ class KeyboardWrapperTests: XCTestCase {
             NotificationCenter.default.post(name: name, object: nil)
         }
 
-        XCTAssertEqual(keyboardWrapperDelegate.states, [.willShow, .visible, .willHide, .hidden])
+        XCTAssertEqual(keyboardWrapperDelegate.states, [.willShow, .visible, .willChangeFrame, .didChangeFrame, .willHide, .hidden])
     }
     
 }
