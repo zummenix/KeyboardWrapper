@@ -17,12 +17,10 @@ open class KeyboardWrapper {
     /// Creates a new instance of `KeyboardWrapper` and adds itself as observer for `UIKeyboard` notifications.
     public init() {
         let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        center.addObserver(self, selector: #selector(keyboardDidShowNotification), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        center.addObserver(self, selector: #selector(keyboardWillChangeFrameNotification), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        center.addObserver(self, selector: #selector(keyboardDidChangeFrameNotification), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
-        center.addObserver(self, selector: #selector(keyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        center.addObserver(self, selector: #selector(keyboardDidHideNotification), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        let states: [KeyboardState] = [.hidden, .willShow, .visible, .willHide, .willChangeFrame, .didChangeFrame ]
+        for state in states {
+            center.addObserver(self, selector: #selector(keyboardNotification(_:)), name: state.notificationName, object: nil)
+        }
     }
 
     /// Creates a new instance of `KeyboardWrapper`, adds itself as observer for `UIKeyboard` notifications and
@@ -36,34 +34,11 @@ open class KeyboardWrapper {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc private func keyboardWillShowNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .willShow)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
-    }
-
-    @objc private func keyboardDidShowNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .visible)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
-    }
-
-    @objc private func keyboardWillChangeFrameNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .willChangeFrame)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
-    }
-
-    @objc private func keyboardDidChangeFrameNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .didChangeFrame)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
-    }
-
-    @objc private func keyboardWillHideNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .willHide)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
-    }
-
-    @objc private func keyboardDidHideNotification(_ notification: Notification) {
-        let info = KeyboardInfo(info: notification.userInfo, state: .hidden)
-        delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
+    @objc private func keyboardNotification(_ notification: Notification) {
+        if let state = KeyboardState(notificationName: notification.name) {
+            let info = KeyboardInfo(info: notification.userInfo, state: state)
+            delegate?.keyboardWrapper(self, didChangeKeyboardInfo: info)
+        }
     }
 }
 
@@ -93,6 +68,32 @@ public enum KeyboardState {
     /// Denotes state when the keyboard changed its frame.
     /// Corresponds to `UIKeyboardDidChangeFrameNotification`.
     case didChangeFrame
+
+    /// A name of a notification that corresponds to this keyboard state.
+    var notificationName: NSNotification.Name {
+        switch self {
+        case .hidden: return .UIKeyboardDidHide
+        case .willShow: return .UIKeyboardWillShow
+        case .visible: return .UIKeyboardDidShow
+        case .willHide: return .UIKeyboardWillHide
+        case .willChangeFrame: return .UIKeyboardWillChangeFrame
+        case .didChangeFrame: return .UIKeyboardDidChangeFrame
+        }
+    }
+
+    /// Creates the keyboard state from a notification name.
+    init?(notificationName: Notification.Name) {
+        switch notificationName {
+        case .UIKeyboardDidHide : self = .hidden
+        case .UIKeyboardWillShow: self = .willShow
+        case .UIKeyboardDidShow: self = .visible
+        case .UIKeyboardWillHide: self = .willHide
+        case .UIKeyboardWillChangeFrame: self = .willChangeFrame
+        case .UIKeyboardDidChangeFrame: self = .didChangeFrame
+        default:
+            return nil
+        }
+    }
 }
 
 /// Represents info about keyboard extracted from `NSNotification`.
