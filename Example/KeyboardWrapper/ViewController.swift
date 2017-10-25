@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardWrapper = KeyboardWrapper(delegate: self)
+        keyboardWrapper = KeyboardWrapper(delegate: self, observableKeyboardStates: [.willShow, .willHide])
     }
 
     @IBAction func tapGestureRecognizerAction(_ sender: UIGestureRecognizer) {

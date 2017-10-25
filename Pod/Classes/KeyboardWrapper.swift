@@ -11,22 +11,24 @@ public protocol KeyboardWrapperDelegate: class {
 /// Responsible for observing `UIKeyboard` notifications and calling `delegate` to notify about changes.
 open class KeyboardWrapper {
 
+    public let observableKeyboardStates: [KeyboardState]
+
     /// The delegate for keyboard notifications.
     open weak var delegate: KeyboardWrapperDelegate?
 
     /// Creates a new instance of `KeyboardWrapper` and adds itself as observer for `UIKeyboard` notifications.
-    public init() {
+    public init(observableKeyboardStates: [KeyboardState]) {
+        self.observableKeyboardStates = observableKeyboardStates
         let center = NotificationCenter.default
-        let states: [KeyboardState] = [.hidden, .willShow, .visible, .willHide, .willChangeFrame, .didChangeFrame ]
-        for state in states {
+        for state in observableKeyboardStates {
             center.addObserver(self, selector: #selector(keyboardNotification(_:)), name: state.notificationName, object: nil)
         }
     }
 
     /// Creates a new instance of `KeyboardWrapper`, adds itself as observer for `UIKeyboard` notifications and
     /// sets `delegate`.
-    public convenience init(delegate: KeyboardWrapperDelegate) {
-        self.init()
+    public convenience init(delegate: KeyboardWrapperDelegate, observableKeyboardStates: [KeyboardState]) {
+        self.init(observableKeyboardStates: observableKeyboardStates)
         self.delegate = delegate
     }
 
