@@ -4,7 +4,7 @@ import UIKit
 /// Implement the method of this protocol to respond to `UIKeyboard` notifications.
 public protocol KeyboardWrapperDelegate: class {
 
-    /// Called when `KeyboardWrapper` will receive `UIKeyboard[WillShow|DidShow|WillHide|DidHide]Notification`.
+    /// Called when `KeyboardWrapper` will receive `UIKeyboard` notifications observed by `KeyboardWrapper`.
     func keyboardWrapper(_ wrapper: KeyboardWrapper, didChangeKeyboardInfo info: KeyboardInfo)
 }
 
@@ -72,7 +72,7 @@ public enum KeyboardState {
     case didChangeFrame
 
     /// A name of a notification that corresponds to this keyboard state.
-    var notificationName: NSNotification.Name {
+    var notificationName: Notification.Name {
         switch self {
         case .hidden: return .UIKeyboardDidHide
         case .willShow: return .UIKeyboardWillShow
@@ -98,7 +98,7 @@ public enum KeyboardState {
     }
 }
 
-/// Represents info about keyboard extracted from `NSNotification`.
+/// Represents info about keyboard extracted from `Notification`.
 public struct KeyboardInfo {
 
     /// The state of the keyboard.
@@ -132,7 +132,7 @@ public struct KeyboardInfo {
 }
 
 public extension KeyboardInfo {
-    /// Creates instance of `KeyboardInfo` using `userInfo` from `NSNotification` object and a keyboard state.
+    /// Creates instance of `KeyboardInfo` using `userInfo` from `Notification` object and a keyboard state.
     /// If there is no info or `info` doesn't contain appropriate key-value pair uses default values.
     init(info: [AnyHashable: Any]?, state: KeyboardState) {
         self.state = state
