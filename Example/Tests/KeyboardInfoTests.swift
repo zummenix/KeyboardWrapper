@@ -21,4 +21,14 @@ class KeyboardInfoTests: XCTestCase {
         }
         XCTAssertEqual(options, [.curveEaseInOut, .curveEaseIn, .curveEaseOut, .curveLinear])
     }
+
+    func testAnimationOptionsWithHiddenAnimationCurveCase() {
+        let curves: [UIViewAnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
+        let rawCurves: [Int] = curves.map({ $0.rawValue }) + [7]
+
+        let options = rawCurves.map { c in
+            KeyboardInfo(info: [UIKeyboardAnimationCurveUserInfoKey: c], state: .willShow).animationOptions
+        }
+        XCTAssertEqual(options, [.curveEaseInOut, .curveEaseIn, .curveEaseOut, .curveLinear, .curveEaseInOut])
+    }
 }
