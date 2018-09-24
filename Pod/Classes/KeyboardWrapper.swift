@@ -115,7 +115,12 @@ public extension KeyboardInfo {
         self.state = state
         self.beginFrame = (info?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
         self.endFrame = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
-        self.animationCurve = UIViewAnimationCurve(rawValue: info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0) ?? .easeInOut
+        let animationCurveRaw = info?[UIKeyboardAnimationCurveUserInfoKey] as? Int ?? 0
+        if animationCurveRaw == 7 {
+            self.animationCurve = .easeInOut
+        } else {
+            self.animationCurve = UIViewAnimationCurve(rawValue: animationCurveRaw) ?? .easeInOut
+        }
         self.animationDuration = TimeInterval(info?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.0)
     }
 }
