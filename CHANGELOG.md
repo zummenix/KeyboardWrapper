@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.0] - 2018-09-24
+- Fix a crash when the rawValue of UIViewAnimationCurve is equal to 7
+
 ## [4.0.0] - 2017-09-23
 - Upgrade to swift 4.
 - Implement init for KeyboardInfo instead of static method.
