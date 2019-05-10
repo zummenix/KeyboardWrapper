@@ -1,6 +1,12 @@
 # KeyboardWrapper
-[![Build Status](https://travis-ci.org/zummenix/KeyboardWrapper.svg?branch=master)](https://travis-ci.org/zummenix/KeyboardWrapper)
-[![Cocoapod](https://img.shields.io/cocoapods/v/KeyboardWrapper.svg)](https://cocoapods.org/pods/KeyboardWrapper)
+
+---
+**Deprecated!!!**
+
+This project is deprecated in favor of the new one https://github.com/zummenix/KeyboardNotificationsObserver
+It has more modern and convenient interface, fixes some pitfalls of the current project and, did I
+mention, it has better interface ;). I hope you like it.
+---
 
 A safe wrapper for UIKeyboard notifications written in Swift.
 
