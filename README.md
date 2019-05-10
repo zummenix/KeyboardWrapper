@@ -6,6 +6,7 @@
 This project is deprecated in favor of the new one https://github.com/zummenix/KeyboardNotificationsObserver
 It has more modern and convenient interface, fixes some pitfalls of the current project and, did I
 mention, it has better interface ;). I hope you like it.
+
 ---
 
 A safe wrapper for UIKeyboard notifications written in Swift.
