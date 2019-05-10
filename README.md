@@ -1,6 +1,5 @@
 # KeyboardWrapper
 
----
 **Deprecated!!!**
 
 This project is deprecated in favor of the new one https://github.com/zummenix/KeyboardNotificationsObserver
